@@ -42,16 +42,20 @@ class PegawaiController extends Controller
     public function PostAddPegawai(Request $request){
         $instruktur = new Instruktur;
         // ddd($instruktur);
-        $instruktur-> id_instruktur = $request-> id_instruktur2;
-        $instruktur-> nama_instruktur = $request-> nama_instruktur2;
-        $instruktur-> status_instruktur = $request-> status_instruktur2;
-        $instruktur-> hp_instruktur = $request-> hp_instruktur2;
-        $instruktur-> email_instruktur = $request-> email_instruktur2;
-        $instruktur-> kualifikasi_instruktur = $request-> kualifikasi_instruktur2;
-        $instruktur-> kampus_instruktur = $request-> kampus_instruktur2;
-        $instruktur-> sertifikasi_tot = $request-> sertifikasi_tot2;
-        $instruktur-> kompetensi_instruktur = $request-> kompetensi_instruktur2;
-        $instruktur->save();
+        $pegawai-> nid = $request-> nid2;
+        $pegawai-> nama_lengkap = $request-> nama_lengkap2;
+        $pegawai-> lokasi_unit = $request-> lokasi_unit2;
+        $pegawai-> divisi_asal = $request-> divisi_asal2;
+        $pegawai-> email = $request-> email2;
+        $pegawai-> telpon = $request-> telpon2;
+        $pegawai-> posisi = $request-> posisi2;
+        $pegawai-> alamat_ktp = $request-> alamat_ktp2;
+        $pegawai-> kota_ktp = $request-> kota_ktp2;
+        $pegawai-> kota_ktp = $request-> provinsi_ktp2;
+        $pegawai-> ktp = $request-> ktp2;
+        $pegawai-> npwp = $request-> npwp2;
+        $pegawai-> jenjang_jabatan = $request-> jenjang_jabatan2;
+        $pegawai->save();
         return redirect()->route("dashboard.pegawai");
     }
 
@@ -60,15 +64,19 @@ class PegawaiController extends Controller
         // dd($request);
         $instruktur = Instruktur::find($request->id_key);
         // ddd($instruktur);
-        $instruktur-> id_instruktur = $request-> id_instruktur2;
-        $instruktur-> nama_instruktur = $request-> nama_instruktur2;
-        $instruktur-> status_instruktur = $request-> status_instruktur2;
-        $instruktur-> hp_instruktur = $request-> hp_instruktur2;
-        $instruktur-> email_instruktur = $request-> email_instruktur2;
-        $instruktur-> kualifikasi_instruktur = $request-> kualifikasi_instruktur2;
-        $instruktur-> kampus_instruktur = $request-> kampus_instruktur2;
-        $instruktur-> sertifikasi_tot = $request-> sertifikasi_tot2;
-        $instruktur-> kompetensi_instruktur = $request-> kompetensi_instruktur2;
+        $pegawai-> nid = $request-> nid2;
+        $pegawai-> nama_lengkap = $request-> nama_lengkap2;
+        $pegawai-> lokasi_unit = $request-> lokasi_unit2;
+        $pegawai-> divisi_asal = $request-> divisi_asal2;
+        $pegawai-> email = $request-> email2;
+        $pegawai-> telpon = $request-> telpon2;
+        $pegawai-> posisi = $request-> posisi2;
+        $pegawai-> alamat_ktp = $request-> alamat_ktp2;
+        $pegawai-> kota_ktp = $request-> kota_ktp2;
+        $pegawai-> kota_ktp = $request-> provinsi_ktp2;
+        $pegawai-> ktp = $request-> ktp2;
+        $pegawai-> npwp = $request-> npwp2;
+        $pegawai-> jenjang_jabatan = $request-> jenjang_jabatan2;
         $instruktur->save();
         return redirect()->route("dashboard.pegawai");
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstrukturController;
+use App\Http\Controllers\PegawaiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,13 +38,13 @@ Route::middleware('auth')->group(function() {
     Route::get('/dashboard/sertifikasi', [DashboardController::class, 'getSertifikasi'])->name('dashboard.sertifikasi');
     Route::get('get-comptency-instruktur', [InstrukturController::class, 'getCompetencyInstruktur'])->name('getCompetencyInstruktur');
     Route::post('DeleteDataInstruktur', [InstrukturController::class, 'DeleteDataInstruktur'])->name('DeleteDataInstruktur');
-    Route::post('DeleteDataPegawai', [InstrukturController::class, 'DeleteDataPegawai'])->name('DeleteDataPegawai');
+    Route::post('DeleteDataPegawai', [PegawaiController::class, 'DeleteDataPegawai'])->name('DeleteDataPegawai');
     Route::get('get-detail-instruktur', [InstrukturController::class, 'getDetailInstruktur'])->name('getDetailInstruktur');
-    Route::get('get-detail-pegawai', [InstrukturController::class, 'getDetailPegawai'])->name('getDetailPegawai');
+    Route::get('get-detail-pegawai', [PegawaiController::class, 'getDetailPegawai'])->name('getDetailPegawai');
     Route::get('get-edit-instruktur', [InstrukturController::class, 'getEditInstruktur'])->name('getEditInstruktur');
-    Route::get('get-edit-pegawai', [InstrukturController::class, 'getEditPegawai'])->name('getEditPegawai');
+    Route::get('get-edit-pegawai', [PegawaiController::class, 'getEditPegawai'])->name('getEditPegawai');
     Route::post('post-edit-instruktur', [InstrukturController::class, 'PostEditInstruktur'])->name('PostEditInstruktur');
-    Route::post('post-edit-pegawai', [InstrukturController::class, 'PostEditPegawai'])->name('PostEditPegawai');
+    Route::post('post-edit-pegawai', [PegawaiController::class, 'PostEditPegawai'])->name('PostEditPegawai');
     Route::post('post-add-instruktur', [InstrukturController::class, 'PostAddInstruktur'])->name('PostAddInstruktur');
-    Route::post('post-add-pegawai', [InstrukturController::class, 'PostAddPegawai'])->name('PostAddPegawai');
+    Route::post('post-add-pegawai', [PegawaiController::class, 'PostAddPegawai'])->name('PostAddPegawai');
 });

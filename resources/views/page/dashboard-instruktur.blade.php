@@ -32,7 +32,7 @@
                     @endif
                 </div>
             </div>
-        
+
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-black" style="font-size:30px"> Data Instruktur</h6>
@@ -293,7 +293,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteInstrukturLabel">Modal title</h5>
+                            <h5 class="modal-title" id="deleteInstrukturLabel">Menghapus Data Instruktur</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

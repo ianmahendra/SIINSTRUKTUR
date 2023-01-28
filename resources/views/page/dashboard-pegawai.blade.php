@@ -32,7 +32,7 @@
                     @endif
                 </div>
             </div>
-        
+
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-black" style="font-size:30px"> Data Pegawai</h6>
@@ -72,10 +72,10 @@
                                                         onclick="showEdit('{{ $pegawai->nid }}')">
                                                         <i class="fa fa-pencil"> </i>
                                                     </button>
-                                                    <button type="button"
-                                                        data-pegawai-id= '{{$pegawai->nid}}'
+                                                    <button type="button" data-pegawai-id='{{ $pegawai->nid }}'
                                                         data-toggle="modal" data-target="#deletePegawaiModal"
-                                                        class="btn btn-info btn-sm btn-danger"> <i class="far fa-trash-alt"> </i>
+                                                        class="btn btn-info btn-sm btn-danger"> <i class="far fa-trash-alt">
+                                                        </i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -140,7 +140,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="alamat_ktp">Alamat</label>
-                                        <input type="text" class="form-control" name="alamat_ktp2, kota_ktp2, provinsi_ktp2">
+                                        <input type="text" class="form-control" name="alamat_ktp2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="kota_ktp">Kota</label>
+                                        <input type="text" class="form-control" name="kota_ktp2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="provinsi_ktp">Provinsi</label>
+                                        <input type="text" class="form-control" name="provinsi_ktp2">
                                     </div>
                                 </div>
                             </div>
@@ -208,10 +216,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="alamat_ktp">Alamat</label>
-                                    <input type="text" class="form-control" name="alamat_ktp2, kota_ktp2, provinsi_ktp2" readonly>
-                                </div>                                
+                                    <input type="text" class="form-control" id="alamat_ktp" name="alamat_ktp"
+                                        readonly>
+                                </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -237,23 +246,25 @@
                                     <h3 id="dataTidakAdaEditModal">Data tidak ditemukan</h3>
                                 </div>
                                 <div id="dataedit">
-
-                                    <input type="hidden" id="idKey" name="id_key" >
+                                    <input type="hidden" id="idKey" name="id_key">
                                     <div class="form-group">
                                         <label for="nid">ID</label>
                                         <input type="text" class="form-control" id="nid2" name="nid2">
                                     </div>
                                     <div class="form-group">
                                         <label for="nama_lengkap">Nama Pegawai</label>
-                                        <input type="text" class="form-control" id="nama_lengkap2" name="nama_lengkap2">
+                                        <input type="text" class="form-control" id="nama_lengkap2"
+                                            name="nama_lengkap2">
                                     </div>
                                     <div class="form-group">
                                         <label for="lokasi_unit">Lokasi Unit</label>
-                                        <input type="text" class="form-control" id="lokasi_unit2" name="lokasi_unit2">
+                                        <input type="text" class="form-control" id="lokasi_unit2"
+                                            name="lokasi_unit2">
                                     </div>
                                     <div class="form-group">
                                         <label for="divisi_asal">Divisi Asal</label>
-                                        <input type="text" class="form-control" id="divisi_asal2" name="divisi_asal2">
+                                        <input type="text" class="form-control" id="divisi_asal2"
+                                            name="divisi_asal2">
                                     </div>
                                     <div class="form-group">
                                         <label for="npwp">NPWP</label>
@@ -275,13 +286,26 @@
                                         <label for="posisi">Posisi</label>
                                         <input type="text" class="form-control" id="posisi2" name="posisi2">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="alamat_ktp">Alamat</label>
+                                        <input type="text" class="form-control" id="alamat_ktp2" name="alamat_ktp2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="kota_ktp">Kota</label>
+                                        <input type="text" class="form-control" id="kota_ktp2" name="kota_ktp2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="provinsi_ktp">Provinsi</label>
+                                        <input type="text" class="form-control" id="provinsi_ktp2"
+                                            name="provinsi_ktp2">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal"
-                                    onclick="submitForm()">Submit</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success" data-dismiss="modal"
+                                        onclick="submitForm()">Submit</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
                         </form>
                     </div>
                 </div>
@@ -292,14 +316,13 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deletePegawaiLabel">Modal title</h5>
+                            <h5 class="modal-title" id="deletePegawaiLabel">Menghapus Data Pegawai</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="{{ route('DeleteDataPegawai') }}"
-                                id="deletePegawaiModalForm">
+                            <form method="POST" action="{{ route('DeleteDataPegawai') }}" id="deletePegawaiModalForm">
                                 @csrf
                                 <input type="hidden" name="nid" id="nid">
                                 <div class="text-center">
@@ -308,11 +331,11 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-danger" data-dismiss="modal"
-                                onclick="
+                            onclick="
             event.preventDefault();
             document.getElementById('deletePegawaiModalForm').submit();">Delete</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -399,7 +422,7 @@
                     $.ajax({
                         url: "{!! route('getDetailPegawai') !!}",
                         data: {
-                            nid : nid
+                            nid: nid
                         },
                         dataType: 'json',
                         success: function(data) {
@@ -415,9 +438,8 @@
                                 $("#email").val(data.email === null ? 'XXX' : data.email)
                                 $("#telpon").val(data.telpon === null ? 'XXX' : data.telpon)
                                 $("#posisi").val(data.posisi === null ? 'XXX' : data.posisi)
-                                $("#alamat_ktp").val(data.alamat_ktp === null ? 'XXX' : data.alamat_ktp)
-                                $("#provinsi_ktp").val(data.provinsi_ktp === null ? 'XXX' : data.provinsi_ktp)
-                                $("#kota_ktp").val(data.kota_ktp === null ? 'XXX' : data.kota_ktp)
+                                $("#alamat_ktp").val(data.alamat_ktp === null ? 'XXX' : data.alamat_ktp + ", " + data
+                                    .provinsi_ktp + ", " + data.kota_ktp)
                                 $("#loadingDetailModal").hide();
                                 $("#dataDetail").show();
                             } else {
@@ -438,32 +460,27 @@
                     $.ajax({
                         url: "{!! route('getEditPegawai') !!}",
                         data: {
-                            nid : nid
+                            nid: nid
                         },
                         dataType: 'json',
                         success: function(data) {
                             //console.log(data);
                             let noTable = 1;
-
                             if (data) {
-
                                 $("#idKey").val(data.id);
                                 //alert($("#idKey").val());
-                                $("#nid").val(data.nid === null ? 'XXX' : data.nid)
-                                $("#nama_instruktur2").val(data.nama_insturktur === null ? 'XXX' : data.nama_instruktur)
-                                $("#kompetensi_instruktur2").val(data.kompetensi_instruktur === null ? 'XXX' : data
-                                    .kompetensi_instruktur)
-                                $("#status_instruktur2").val(data.status_instruktur === null ? 'XXX' : data
-                                    .status_instruktur)
-                                $("#hp_instruktur2").val(data.hp_instruktur === null ? 'XXX' : data.hp_instruktur)
-                                $("#email_instruktur2").val(data.email_instruktur === null ? 'XXX' : data
-                                    .email_instruktur)
-                                $("#sertifikasi_tot2").val(data.sertifikasi_tot === null ? 'XXX' : data.sertifikasi_tot)
-                                $("#kualifikasi_instruktur2").val(data.kualifikasi_instruktur === null ? 'XXX' : data
-                                    .kualifikasi_instruktur)
-                                $("#kampus_instruktur2").val(data.kampus_instruktur === null ? 'XXX' : data
-                                    .kampus_instruktur)
-                                $("#update_terakhir2").val(data.update_terakhir)
+                                $("#nid2").val(data.nid === null ? 'XXX' : data.nid)
+                                $("#nama_lengkap2").val(data.nama_lengkap === null ? 'XXX' : data.nama_lengkap)
+                                $("#lokasi_unit2").val(data.lokasi_unit === null ? 'XXX' : data.lokasi_unit)
+                                $("#divisi_asal2").val(data.divisi_asal === null ? 'XXX' : data.divisi_asal)
+                                $("#npwp2").val(data.npwp === null ? 'XXX' : data.npwp)
+                                $("#ktp2").val(data.ktp === null ? 'XXX' : data.ktp)
+                                $("#email2").val(data.email === null ? 'XXX' : data.email)
+                                $("#telpon2").val(data.telpon === null ? 'XXX' : data.telpon)
+                                $("#posisi2").val(data.posisi === null ? 'XXX' : data.posisi)
+                                $("#alamat_ktp2").val(data.alamat_ktp === null ? 'XXX' : data.alamat_ktp)
+                                $("#provinsi_ktp2").val(data.provinsi_ktp === null ? 'XXX' : data.provinsi_ktp)
+                                $("#kota_ktp2").val(data.kota_ktp === null ? 'XXX' : data.kota_ktp)
                                 $("#loadingEditModal").hide();
                                 $("#dataEdit").show();
                             } else {
