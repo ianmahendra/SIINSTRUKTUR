@@ -49,9 +49,8 @@
                                     <thead>
                                         <th>NID</th>
                                         <th>Nama Pegawai</th>
-                                        <th>Kompetensi</th>
-                                        <th>Kampus</th>
-                                        <th>Total Jam Mengajar</th>
+                                        <th>Lokasi Unit</th>
+                                        <th>Posisi</th>
                                         <th>Action</th>
                                     </thead>
 
@@ -62,7 +61,6 @@
                                                 <td>{{ $pegawai->nama_lengkap }}</td>
                                                 <td>{{ $pegawai->lokasi_unit }}</td>
                                                 <td>{{ $pegawai->posisi }}</td>
-                                                <td> </td>
                                                 <td>
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                         data-target="#detailModal"
@@ -103,48 +101,51 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-
                                 <div id="dataadd">
                                     <div class="form-group">
                                         <label for="nid">ID</label>
                                         <input type="text" class="form-control" name="nid2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="nama_instruktur">Nama Pegawai</label>
-                                        <input type="text" class="form-control" name="nama_instruktur2">
+                                        <label for="nama_lengkap">Nama Pegawai</label>
+                                        <input type="text" class="form-control" name="nama_lengkap2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="kompetensi_instruktur">Kompetensi</label>
-                                        <input type="text" class="form-control" name="kompetensi_instruktur2">
+                                        <label for="lokasi_unit">Lokasi Unit</label>
+                                        <input type="text" class="form-control" name="lokasi_unit2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="status_instruktur">Status</label>
-                                        <input type="text" class="form-control" name="status_instruktur2">
+                                        <label for="divisi_asal">Divisi Asal</label>
+                                        <input type="text" class="form-control" name="divisi_asal2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="hp_instruktur">HP</label>
-                                        <input type="text" class="form-control" name="hp_instruktur2">
+                                        <label for="npwp">NPWP</label>
+                                        <input type="text" class="form-control" name="npwp2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="email_instruktur">Email</label>
-                                        <input type="text" class="form-control" name="email_instruktur2">
+                                        <label for="ktp">KTP</label>
+                                        <input type="text" class="form-control" name="ktp2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="sertifikasi_tot">Sertifikasi TOT</label>
-                                        <input type="text" class="form-control" name="sertifikasi_tot2">
+                                        <label for="email">Email</label>
+                                        <input type="text" class="form-control" name="email2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="kualifikasi_instruktur">Kualifikasi</label>
-                                        <input type="text" class="form-control" name="kualifikasi_instruktur2">
+                                        <label for="telpon">No Kontak</label>
+                                        <input type="text" class="form-control" name="telpon2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="kampus_instruktur">Kampus</label>
-                                        <input type="text" class="form-control" name="kampus_instruktur2">
+                                        <label for="posisi">Posisi</label>
+                                        <input type="text" class="form-control" name="posisi2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="alamat_ktp">Alamat</label>
+                                        <input type="text" class="form-control" name="alamat_ktp2, kota_ktp2, provinsi_ktp2">
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Submit</button>
+                                <button type="submit" class="btn btn-success" data-dismiss="modal">Submit</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </form>
@@ -174,33 +175,41 @@
                                     <input type="text" class="form-control" id="nid" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="kompetensi_instruktur">Competency Level</label>
-                                    <input type="text" class="form-control" id="kompetensi_instruktur" readonly>
+                                    <label for="nama_lengkap">Nama Pegawai</label>
+                                    <input type="text" class="form-control" id="nama_lengkap" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="status_instruktur">Status</label>
-                                    <input type="text" class="form-control" id="status_instruktur" readonly>
+                                    <label for="lokasi_unit">Lokasi Unit</label>
+                                    <input type="text" class="form-control" id="lokasi_unit" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="hp_instruktur">Kontak</label>
-                                    <input type="text" class="form-control" id="hp_instruktur" readonly>
+                                    <label for="divisi_asal">Divisi Asal</label>
+                                    <input type="text" class="form-control" id="divisi_asal" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email_instruktur">Email</label>
-                                    <input type="text" class="form-control" id="email_instruktur" readonly>
+                                    <label for="npwp">NPWP</label>
+                                    <input type="text" class="form-control" id="npwp" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sertifikasi_tot">Sertifikasi TOT</label>
-                                    <input type="text" class="form-control" id="sertifikasi_tot" readonly>
+                                    <label for="ktp">KTP</label>
+                                    <input type="text" class="form-control" id="ktp" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="kualifikasi_instruktur">Kualifikasi</label>
-                                    <input type="text" class="form-control" id="kualifikasi_instruktur" readonly>
+                                    <label for="email">EMail</label>
+                                    <input type="text" class="form-control" id="email" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="kampus_instruktur">Kampus</label>
-                                    <input type="text" class="form-control" id="kampus_instruktur" readonly>
+                                    <label for="telpon">No. Kontak</label>
+                                    <input type="text" class="form-control" id="telpon" readonly>
                                 </div>
+                                <div class="form-group">
+                                    <label for="posisi">Posisi</label>
+                                    <input type="text" class="form-control" id="posisi" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="alamat_ktp">Alamat</label>
+                                    <input type="text" class="form-control" name="alamat_ktp2, kota_ktp2, provinsi_ktp2" readonly>
+                                </div>                                
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
@@ -232,48 +241,39 @@
                                     <input type="hidden" id="idKey" name="id_key" >
                                     <div class="form-group">
                                         <label for="nid">ID</label>
-                                        <input type="text" class="form-control" id="nid"
-                                            name="nid2">
+                                        <input type="text" class="form-control" id="nid2" name="nid2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="nama_instruktur">Nama Pegawai</label>
-                                        <input type="text" class="form-control" id="nama_instruktur2"
-                                            name="nama_instruktur2">
+                                        <label for="nama_lengkap">Nama Pegawai</label>
+                                        <input type="text" class="form-control" id="nama_lengkap2" name="nama_lengkap2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="kompetensi_instruktur">Kompetensi</label>
-                                        <input type="text" class="form-control" id="kompetensi_instruktur2"
-                                            name="kompetensi_instruktur2">
+                                        <label for="lokasi_unit">Lokasi Unit</label>
+                                        <input type="text" class="form-control" id="lokasi_unit2" name="lokasi_unit2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="status_instruktur">Status</label>
-                                        <input type="text" class="form-control" id="status_instruktur2"
-                                            name="status_instruktur2">
+                                        <label for="divisi_asal">Divisi Asal</label>
+                                        <input type="text" class="form-control" id="divisi_asal2" name="divisi_asal2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="hp_instruktur">HP</label>
-                                        <input type="text" class="form-control" id="hp_instruktur2"
-                                            name="hp_instruktur2">
+                                        <label for="npwp">NPWP</label>
+                                        <input type="text" class="form-control" id="npwp2" name="npwp2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="email_instruktur">Email</label>
-                                        <input type="text" class="form-control" id="email_instruktur2"
-                                            name="email_instruktur2">
+                                        <label for="ktp">KTP</label>
+                                        <input type="text" class="form-control" id="ktp2" name="ktp2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="sertifikasi_tot">Sertifikasi TOT</label>
-                                        <input type="text" class="form-control" id="sertifikasi_tot2"
-                                            name="sertifikasi_tot2">
+                                        <label for="email">Email</label>
+                                        <input type="text" class="form-control" id="email2" name="email2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="kualifikasi_instruktur">Kualifikasi</label>
-                                        <input type="text" class="form-control" id="kualifikasi_instruktur2"
-                                            name="kualifikasi_instruktur2">
+                                        <label for="telpon">No. Kontak</label>
+                                        <input type="text" class="form-control" id="telpon2" name="telpon2">
                                     </div>
                                     <div class="form-group">
-                                        <label for="kampus_instruktur">Kampus</label>
-                                        <input type="text" class="form-control" id="kampus_instruktur2"
-                                            name="kampus_instruktur2">
+                                        <label for="posisi">Posisi</label>
+                                        <input type="text" class="form-control" id="posisi2" name="posisi2">
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +283,6 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -408,19 +407,17 @@
                             let noTable = 1;
                             if (data) {
                                 $("#nid").val(data.nid === null ? 'XXX' : data.nid)
-                                $("#nama_instruktur").val(data.nama_insturktur === null ? 'XXX' : data.nama_insturktur)
-                                $("#status_instruktur").val(data.status_instruktur === null ? 'XXX' : data
-                                    .status_instruktur)
-                                $("#hp_instruktur").val(data.hp_instruktur === null ? 'XXX' : data.hp_instruktur)
-                                $("#email_instruktur").val(data.email_instruktur === null ? 'XXX' : data
-                                    .email_instruktur)
-                                $("#kualifikasi_instruktur").val(data.kualifikasi_instruktur === null ? 'XXX' : data
-                                    .kualifikasi_instruktur)
-                                $("#kampus_instruktur").val(data.kampus_instruktur === null ? 'XXX' : data
-                                    .kampus_instruktur)
-                                $("#sertifikasi_tot").val(data.sertifikasi_tot === null ? 'XXX' : data.sertifikasi_tot)
-                                $("#kompetensi_instruktur").val(data.kompetensi_instruktur === null ? 'XXX' : data
-                                    .kompetensi_instruktur)
+                                $("#nama_lengkap").val(data.nama_lengkap === null ? 'XXX' : data.nama_lengkap)
+                                $("#lokasi_unit").val(data.lokasi_unit === null ? 'XXX' : data.lokasi_unit)
+                                $("#divisi_asal").val(data.divisi_asal === null ? 'XXX' : data.divisi_asal)
+                                $("#npwp").val(data.npwp === null ? 'XXX' : data.npwp)
+                                $("#ktp").val(data.ktp === null ? 'XXX' : data.ktp)
+                                $("#email").val(data.email === null ? 'XXX' : data.email)
+                                $("#telpon").val(data.telpon === null ? 'XXX' : data.telpon)
+                                $("#posisi").val(data.posisi === null ? 'XXX' : data.posisi)
+                                $("#alamat_ktp").val(data.alamat_ktp === null ? 'XXX' : data.alamat_ktp)
+                                $("#provinsi_ktp").val(data.provinsi_ktp === null ? 'XXX' : data.provinsi_ktp)
+                                $("#kota_ktp").val(data.kota_ktp === null ? 'XXX' : data.kota_ktp)
                                 $("#loadingDetailModal").hide();
                                 $("#dataDetail").show();
                             } else {

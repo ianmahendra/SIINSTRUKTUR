@@ -24,7 +24,7 @@
             </button>
             <div class="table-responsive mt-3">
                 <div class="row"><div class="col-sm-12">
-                    <table class="table table-bordered" id="tableMasterPelatihan" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="tableDataPelatihan" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
                         <thead>
                             <th>Course ID</th>
                             <th>Course Title</th>
@@ -62,7 +62,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#tableMasterPelatihan').DataTable({
+        $('#tableDataPelatihan').DataTable({
             "scrollX": true
         });
     });

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Karyawan;
+use App\Models\Pegawai;
 use App\Models\Instruktur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
