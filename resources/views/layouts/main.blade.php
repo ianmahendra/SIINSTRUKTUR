@@ -77,7 +77,7 @@
 
   }
   .shadow-lg:hover{
-    border:1px solid blue;
+    border:1px solid rgb(190, 190, 190);
   }
 
   .tooltip-inner {
@@ -145,7 +145,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
 
-      <span class="text-light" style="font-size:15px">Menu</span>
+      <b class="text-light" style="font-size:15px ;margin-left:20px">Menu</b>
 
       <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Ringkasan!">
       <div class="shadow-lg m-2">
@@ -224,7 +224,7 @@
 
         <!-- Topbar -->
         <nav class="navbar bg-custom-navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-            <img src="/img/siinstruktur.png" width="320" height="auto" padding="20">
+            <img src="/img/siinstruktur.png" width="280" height="auto" padding="20">
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
