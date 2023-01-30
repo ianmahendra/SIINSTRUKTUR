@@ -6,26 +6,56 @@ use App\Models\Karyawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PegawaiController extends Controller
+class SertifikasiController extends Controller
 {
-    //
-    public function getCompetencyInstruktur(Request $request)
+    public function getDetailSertifikasi(Request $request)
     {
-        $nid = $request->dataNID;
-        $dataCompetency = DB::table('master_sertifikasi')
-                    ->where('nid', '=', $nid)
-                    ->get();
+        $id_skillcomp = $request-> id_skillcomp;
+        $dataDetail = DB::table('only_sertifikasi')
+                    ->where('id_skillcomp', '=', $id_skillcomp)
+                    ->first();
         //ddd($dataCompetency);
-        return response()->json($dataCompetency);
+        return response()->json($dataDetail);
     }
 
-    public function DeleteDataInstruktur(Request $request)
+    public function getEditSertifikasi(Request $request)
+    {
+        $id_skillcomp = $request->id_skillcomp;
+        $dataEdit = DB::table('only_sertifikasi')
+                    ->where('id_skillcomp', '=', $id_skillcomp)
+                    ->first();
+        //ddd($dataCompetency);
+        return response()->json($dataEdit);
+    }
+
+    public function PostAddSertifikasi(Request $request){
+        $sertifikasi = new Sertifikasi;
+        // ddd($sertifikasi);
+        $sertifikasi-> id_skillcomp = $request-> id_skillcomp2;
+        $sertifikasi-> skill_comp = $request-> skill_comp2;
+        $sertifikasi-> competency_level = $request-> competency_level2;
+        $sertifikasi->save();
+        return redirect()->route("dashboard.sertifikasi");
+    }
+
+    public function PostEditSertifikasi(Request $request)
+    {
+        // dd($request);
+        $sertifikasi = Sertifikasi::find($request->id_skillcomp);
+        $sertifikasi-> id_skillcomp = $request-> id_skillcomp2;
+        $sertifikasi-> skill_comp = $request-> skill_comp2;
+        $sertifikasi-> competency_level = $request-> competency_level2;
+        $sertifikasi->save();
+        return redirect()->route("dashboard.sertifikasi");
+    }
+
+    public function DeleteDataSertifikasi(Request $request)
     {
         //dd($request);
-        $karyawanid = $request -> instrukturID;
-        $karyawan = Karyawan::find($karyawanid);
-        $karyawan ->delete();
-        return redirect()->route("dashboard.instruktur");
+        $id_skillcomp = $request -> id_skillcomp;
+        $sertifikasi = Sertifikasi::find($id_skillcomp);
+        $sertifikasi ->delete();
+        return redirect()->route("dashboard.sertifikasi");
     }
 
 }

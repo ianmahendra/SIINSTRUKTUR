@@ -46,10 +46,9 @@ class DashboardController extends Controller
         return view('page.dashboard-sertifikasi', compact('dataSertifikasis'));
     }
 
-    public function getMasterPelatihan()
-    {
-        $pelatihans = Pelatihan::all();
-
-        return view('page.dashboard-pelatihan', compact('pelatihans'));
+    public function getPelatihan() {
+        $dataPelatihans = DB::table('data_pelatihan') -> limit (100)-> get();
+        // dd($dataPelatihans);
+        return view('page.dashboard-pelatihan', compact('dataPelatihans'));
     }
 }

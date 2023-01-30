@@ -71,7 +71,7 @@
   .nav-item{
     border-radius: 10px;
   }
-  
+
   .nav-item:hover{
   background:
 
@@ -144,11 +144,14 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
+
+      <span class="text-light" style="font-size:15px">Menu</span>
+
       <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Ringkasan!">
       <div class="shadow-lg m-2">
         <a class="nav-link collapsed text-light" href="{{ route('home') }}">
-          <i class="fas fa-fw fa-cog text-light" style="font-size:20px"></i>
-          <span style="font-size:15px">Dashboard</span>
+            <i class="fas fa-tachometer-alt" style="font-size:20px"></i>
+          <span style="font-size:15px ;margin-left:15px">Dashboard</span>
         </a>
         </div>
       </li>
@@ -158,8 +161,8 @@
       <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Data Instruktur!">
       <div class="shadow-lg m-2">
         <a class="nav-link collapsed text-light" href="{{ route('dashboard.instruktur') }}">
-          <i class="fas fa-users text-light" style="font-size:20px"></i>
-          <span style="font-size:15px">Instruktur</span>
+          <i class="fas fa-chalkboard-teacher" style="font-size:20px"></i>
+          <span style="font-size:15px ;margin-left:15px" >Instruktur</span>
         </a>
         </div>
       </li>
@@ -168,8 +171,8 @@
       <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Data Pegawai!">
         <div class="shadow-lg m-2">
           <a class="nav-link collapsed text-light" href="{{ route('dashboard.pegawai') }}">
-            <i class="fas fa-users text-light" style="font-size:20px"></i>
-            <span style="font-size:15px">Pegawai</span>
+            <i class="fas fa-users" style="font-size:20px"></i>
+            <span style="font-size:15px ;margin-left:15px">Pegawai</span>
           </a>
         </div>
       </li>
@@ -178,8 +181,8 @@
       <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Data Pelatihan!">
         <div class="shadow-lg m-2">
         <a class="nav-link collapsed text-light" href="{{ route('dashboard.pelatihan') }}">
-          <i class="fas fa-user-shield text-light" style="font-size:20px"></i>
-          <span style="font-size:15px">Pelatihan</span>
+          <i class="fas fa-user-shield" style="font-size:20px"></i>
+          <span style="font-size:15px ;margin-left:15px">Pelatihan</span>
         </a>
         </div>
       </li>
@@ -188,8 +191,8 @@
       <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Data Sertifikasi!">
         <div class="shadow-lg m-2">
         <a class="nav-link collapsed text-light" href="{{ route('dashboard.sertifikasi') }}">
-            <i class="fas fa-user-shield text-light" style="font-size:20px"></i>
-            <span style="font-size:15px">Sertifikasi</span>
+            <i class="fas fa-file-pdf" style="font-size:20px"></i>
+            <span style="font-size:15px ;margin-left:25px">Sertifikasi</span>
         </a>
         </div>
       </li>

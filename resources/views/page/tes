@@ -64,17 +64,17 @@
                                 <td><button type="button" class="btn btn-info btn-sm btn-info" data-toggle="modal"
                                         data-target="#detailModal"
                                         onclick="showDetail('{{ $pegawai->nid }}')">
-                                        <i class="fas fa-list"> </i> 
+                                        <i class="fas fa-list"> </i>
                                     </button>
-                                    <button type="button" class="btn btn-info btn-sm btn-warning" 
+                                    <button type="button" class="btn btn-info btn-sm btn-warning"
                                         data-toggle="modal" data-target="#editModal"
                                         onclick="showEdit('{{ $pegawai->nid }}')">
-                                        <i class="fa fa-pencil"> </i> 
+                                        <i class="fa fa-pencil"> </i>
                                     </button>
                                     <button
                                         type="button"
                                         data-pegawai-id = '{{$pegawai->nid}}'
-                                        data-toggle="modal" data-target="#deletePegawaiModal" 
+                                        data-toggle="modal" data-target="#deletePegawaiModal"
                                         class="btn btn-info btn-sm btn-danger"> <i class= "far fa-trash-alt"> </i>
                                     </button>
                                 </td>
@@ -258,4 +258,48 @@ $.ajax({
         }
     }
 })
+}
+
+function showCompetency(id_skillcomp) {
+    console.log('showCompetency clicked');
+    $("#tableCompetencyModal tbody").empty();
+    $("#dataTidakAdaComptencyModal").hide();
+    $("#tableCompetencyModal").hide();
+    $("#loadingComptencyModal").show();
+
+    $.ajax({
+        url: "{!! route('getCompetencySertifikasi') !!}",
+        data: {
+            dataNID: nid
+        },
+        dataType: 'json',
+        success: function(data) {
+            //console.log(data);
+            let noTable = 1;
+            if (data.length > 0) {
+                data.forEach((item, index) => {
+                    if (item.SKILL_COMP == '-' && item.COMPTCY_LEVEL == null && item
+                        .COMPTCY_DESC == '-') {
+                        return;
+                    }
+                    $("#tableCompetencyModal tbody").append(
+                        `
+            <tr>
+                <td>${noTable}</td>
+                <td>${item.SKILL_COMP}</td>
+                <td>${item.COMPTCY_LEVEL == null ? '-': item.COMPTCY_LEVEL}</td>
+                <td>${item.COMPTCY_DESC}</td>
+            </tr>
+            `
+                    )
+                    noTable++;
+                });
+                $("#loadingComptencyModal").hide();
+                $("#tableCompetencyModal").show();
+            } else {
+                $("#loadingComptencyModal").hide();
+                $("#dataTidakAdaComptencyModal").show();
+            }
+        }
+    })
 }
