@@ -75,9 +75,10 @@
                                                         <i class="fa fa-pencil"> </i>
                                                     </button>
                                                     <button type="button"
-                                                        data-instruktur-id= '{{$instruktur->id_instruktur}}'
+                                                        data-instruktur-id='{{ $instruktur->id_instruktur }}'
                                                         data-toggle="modal" data-target="#deleteInstrukturModal"
-                                                        class="btn btn-info btn-sm btn-danger"> <i class="far fa-trash-alt"> </i>
+                                                        class="btn btn-info btn-sm btn-danger"> <i class="far fa-trash-alt">
+                                                        </i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -229,7 +230,7 @@
                                 </div>
                                 <div id="dataedit">
 
-                                    <input type="hidden" id="idKey" name="id_key" >
+                                    <input type="hidden" id="idKey" name="id_key">
                                     <div class="form-group">
                                         <label for="id_instruktur">ID</label>
                                         <input type="text" class="form-control" id="id_instruktur2"
@@ -326,70 +327,85 @@
         @section('script-js')
             <script>
                 $(document).ready(function() {
-                    $('#tableInstruktur thead tr')
-                        .clone(true)
-                        .addClass('filters')
-                        .appendTo('#tableInstruktur thead');
+                    // $('#tableInstruktur thead tr')
+                    //     .clone(true)
+                    //     .addClass('filters')
+                    //     .appendTo('#tableInstruktur thead');
 
                     $('#tableInstruktur').DataTable({
                         "scrollX": true,
                         "order": [],
                         orderCellsTop: true,
                         fixedHeader: true,
-                        initComplete: function() {
-                            var api = this.api();
+                        "initComplete": function(settings, json) {
+                            let eha = this;
+                            $("div.dataTables_filter").prepend(
+                                $(`<select class="form-control d-inline-flex mr-3">
+                                    <option value="">Semua Kampus</option>
+                                    @foreach($sekolah as $val)
+                                        <option value="{{ $val->kampus_instruktur }}">{{ $val->kampus_instruktur }}</option>
+                                    @endforeach
+                                    </select>`).on('change', function () {
+                                        //console.log($(this).val());
+                                        console.log(eha.api().columns(3))
+                                        eha.api().columns(3).search($(this).val(), true, false).draw();
 
-                            // For each column
-                            api
-                                .columns()
-                                .eq(0)
-                                .each(function(colIdx) {
-                                    // Set the header cell to contain the input element
-                                    var cell = $('.filters th').eq(
-                                        $(api.column(colIdx).header()).index()
-                                    );
-                                    var title = $(cell).text();
-                                    $(cell).html('<input type="text" placeholder="' + title + '" />');
+                                    })
+                            );
+                        // initComplete: function() {
+                        //     var api = this.api();
 
-                                    // On every keypress in this input
-                                    $(
-                                            'input',
-                                            $('.filters th').eq($(api.column(colIdx).header()).index())
-                                        )
-                                        .off('keyup change')
-                                        .on('change', function(e) {
-                                            // Get the search value
-                                            $(this).attr('title', $(this).val());
-                                            var regexr =
-                                                '({search})'; //$(this).parents('th').find('select').val();
+                        //     // For each column
+                        //     api
+                        //         .columns()
+                        //         .eq(0)
+                        //         .each(function(colIdx) {
+                        //             // Set the header cell to contain the input element
+                        //             var cell = $('.filters th').eq(
+                        //                 $(api.column(colIdx).header()).index()
+                        //             );
+                        //             var title = $(cell).text();
+                        //             $(cell).html('<input type="text" placeholder="' + title + '" />');
 
-                                            var cursorPosition = this.selectionStart;
-                                            // Search the column for that value
-                                            api
-                                                .column(colIdx)
-                                                .search(
-                                                    this.value != '' ?
-                                                    regexr.replace('{search}', '(((' + this.value +
-                                                        ')))') :
-                                                    '',
-                                                    this.value != '',
-                                                    this.value == ''
-                                                )
-                                                .draw();
-                                        })
-                                        .on('keyup', function(e) {
-                                            e.stopPropagation();
+                        //             // On every keypress in this input
+                        //             $(
+                        //                     'input',
+                        //                     $('.filters th').eq($(api.column(colIdx).header()).index())
+                        //                 )
+                        //                 .off('keyup change')
+                        //                 .on('change', function(e) {
+                        //                     // Get the search value
+                        //                     $(this).attr('title', $(this).val());
+                        //                     var regexr =
+                        //                         '({search})'; //$(this).parents('th').find('select').val();
 
-                                            $(this).trigger('change');
-                                            $(this)
-                                                .focus()[0]
-                                                .setSelectionRange(cursorPosition, cursorPosition);
-                                        });
-                                });
-                        },
-                    });
+                        //                     var cursorPosition = this.selectionStart;
+                        //                     // Search the column for that value
+                        //                     api
+                        //                         .column(colIdx)
+                        //                         .search(
+                        //                             this.value != '' ?
+                        //                             regexr.replace('{search}', '(((' + this.value +
+                        //                                 ')))') :
+                        //                             '',
+                        //                             this.value != '',
+                        //                             this.value == ''
+                        //                         )
+                        //                         .draw();
+                        //                 })
+                        //                 .on('keyup', function(e) {
+                        //                     e.stopPropagation();
+
+                        //                     $(this).trigger('change');
+                        //                     $(this)
+                        //                         .focus()[0]
+                        //                         .setSelectionRange(cursorPosition, cursorPosition);
+                        //                 });
+                        //         });
+                        // },
+                    }
                 });
-
+            });
                 function showCompetency(nid) {
                     console.log('showCompetency clicked');
                     //console.log(nid);
@@ -434,7 +450,6 @@
                         }
                     })
                 }
-
                 function showDetail(id_instruktur) {
                     console.log('showDetail clicked');
                     //console.log(id_instruktur);
@@ -475,7 +490,6 @@
                         }
                     })
                 }
-
                 function showEdit(id_instruktur) {
                     // console.log('showEdit clicked');
                     //console.log(id_instruktur);
@@ -521,11 +535,10 @@
                         }
                     })
                 }
-
                 function submitForm() {
                     $("#form_edit").submit()
                 }
-
+                //function
                 function SubmitEditInstruktur(id_instruktur) {
                     console.log('showEdit clicked');
                     //console.log(id_instruktur);
@@ -544,7 +557,6 @@
                         }
                     })
                 }
-
                 //triggered when modal is about to be shown
                 $('#deleteInstrukturModal').on('show.bs.modal', function(e) {
 

@@ -102,6 +102,7 @@
 
   <!-- Custom fonts for this template-->
   <link href="{{ asset ('/sbadmin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
   <!-- Custom styles for this template-->
   <link href="{{ asset ('/sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
   <!-- Custom styles for this page -->
@@ -158,7 +159,7 @@
 
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Data Instruktur!">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tampilan Data Instruktur!">
       <div class="shadow-lg m-2">
         <a class="nav-link collapsed text-light" href="{{ route('dashboard.instruktur') }}">
           <i class="fas fa-chalkboard-teacher" style="font-size:20px"></i>
@@ -206,11 +207,21 @@
       </li> -->
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider d-none d-md-block mt-3">
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item "  data-toggle="tooltip" data-placement="right">
+            <div class="shadow-lg m-2">
+            <a class="nav-link collapsed text-light" href="{{ route('dashboard.sertifikasi') }}">
+                <i class="fas fa-user-check" style="font-size:20px"></i>
+                <span style="font-size:15px ;margin-left:15px">Input Presensi</span>
+            </a>
+            </div>
+          </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <button class="rounded-circle border-0" id="sidebarToggle" style=";margin-top:25px"></button>
       </div>
 
     </ul>
@@ -256,7 +267,6 @@
                 </form>
               </div>
             </li>
-
 
             <div class="topbar-divider d-none d-sm-block"></div>
 

@@ -12,7 +12,11 @@ class DashboardController extends Controller
     //
 
     public function index(){
-        return view('page.dashboard-home');
+        $totalInstruktur = DB::table('instruktur_new')->count();
+        $totalPegawai = DB::table('master_karyawan')->count();
+        $totalSertifikasi = DB::table('only_sertifikasi')->count();
+        $totalPelatihan = DB::table('data_pelatihan')->count();
+        return view('page.dashboard-home',compact('totalInstruktur','totalPegawai', 'totalSertifikasi', 'totalPelatihan'));
     }
 
     public function getInstruktur() {
@@ -21,8 +25,10 @@ class DashboardController extends Controller
                     // ->limit(10)
                     ->orderBy('id', 'ASC')
                     ->get();
+        $sekolah = DB::table('instruktur_new')->select("kampus_instruktur")->groupBy("kampus_instruktur")->get();
+
         // dd($dataInstrukturs);
-        return view('page.dashboard-instruktur', compact('dataInstrukturs'));
+        return view('page.dashboard-instruktur', compact('dataInstrukturs','sekolah'));
     }
 
     public function getPegawai() {
