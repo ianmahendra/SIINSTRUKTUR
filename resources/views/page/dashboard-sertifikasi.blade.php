@@ -38,7 +38,7 @@
                     <h6 class="m-0 font-weight-bold text-black" style="font-size:30px"> Data Sertifikasi</h6>
                 </div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-black" data-toggle="modal" data-target="#addModal">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
                         <i class="fa fa-plus"> </i> <span> Tambah Sertifikasi </span>
                     </button>
                     <div class="table-responsive mt-3">
@@ -249,7 +249,6 @@
             <script>
                 $(document).ready(function() {
                     $('#tableSertifikasi thead tr')
-                        .clone(true)
                         .addClass('filters')
                         .appendTo('#tableSertifikasi thead');
 
@@ -258,57 +257,57 @@
                         "order": [],
                         orderCellsTop: true,
                         fixedHeader: true,
-                        initComplete: function() {
-                            var api = this.api();
+                        // initComplete: function() {
+                        //     var api = this.api();
 
-                            // For each column
-                            api
-                                .columns()
-                                .eq(0)
-                                .each(function(colIdx) {
-                                    // Set the header cell to contain the input element
-                                    var cell = $('.filters th').eq(
-                                        $(api.column(colIdx).header()).index()
-                                    );
-                                    var title = $(cell).text();
-                                    $(cell).html('<input type="text" placeholder="' + title + '" />');
+                        //     // For each column
+                        //     api
+                        //         .columns()
+                        //         .eq(0)
+                        //         .each(function(colIdx) {
+                        //             // Set the header cell to contain the input element
+                        //             var cell = $('.filters th').eq(
+                        //                 $(api.column(colIdx).header()).index()
+                        //             );
+                        //             var title = $(cell).text();
+                        //             $(cell).html('<input type="text" placeholder="' + title + '" />');
 
-                                    // On every keypress in this input
-                                    $(
-                                            'input',
-                                            $('.filters th').eq($(api.column(colIdx).header()).index())
-                                        )
-                                        .off('keyup change')
-                                        .on('change', function(e) {
-                                            // Get the search value
-                                            $(this).attr('title', $(this).val());
-                                            var regexr =
-                                                '({search})'; //$(this).parents('th').find('select').val();
+                        //             // On every keypress in this input
+                        //             $(
+                        //                     'input',
+                        //                     $('.filters th').eq($(api.column(colIdx).header()).index())
+                        //                 )
+                        //                 .off('keyup change')
+                        //                 .on('change', function(e) {
+                        //                     // Get the search value
+                        //                     $(this).attr('title', $(this).val());
+                        //                     var regexr =
+                        //                         '({search})'; //$(this).parents('th').find('select').val();
 
-                                            var cursorPosition = this.selectionStart;
-                                            // Search the column for that value
-                                            api
-                                                .column(colIdx)
-                                                .search(
-                                                    this.value != '' ?
-                                                    regexr.replace('{search}', '(((' + this.value +
-                                                        ')))') :
-                                                    '',
-                                                    this.value != '',
-                                                    this.value == ''
-                                                )
-                                                .draw();
-                                        })
-                                        .on('keyup', function(e) {
-                                            e.stopPropagation();
+                        //                     var cursorPosition = this.selectionStart;
+                        //                     // Search the column for that value
+                        //                     api
+                        //                         .column(colIdx)
+                        //                         .search(
+                        //                             this.value != '' ?
+                        //                             regexr.replace('{search}', '(((' + this.value +
+                        //                                 ')))') :
+                        //                             '',
+                        //                             this.value != '',
+                        //                             this.value == ''
+                        //                         )
+                        //                         .draw();
+                        //                 })
+                        //                 .on('keyup', function(e) {
+                        //                     e.stopPropagation();
 
-                                            $(this).trigger('change');
-                                            $(this)
-                                                .focus()[0]
-                                                .setSelectionRange(cursorPosition, cursorPosition);
-                                        });
-                                });
-                        },
+                        //                     $(this).trigger('change');
+                        //                     $(this)
+                        //                         .focus()[0]
+                        //                         .setSelectionRange(cursorPosition, cursorPosition);
+                        //                 });
+                        //         });
+                        // },
                     });
                 });
 

@@ -9,18 +9,9 @@
 @endsection
 
 @section('konten')
-
-    <html>
-
-    <head>
-        <title>Font Awesome Icons</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-
-    <body>
-
         <div class="container-fluid">
+            {{-- Error Msg --}}
             <div class="row">
                 <div class="col-md-12">
                     @if (count($errors) > 0)
@@ -38,10 +29,10 @@
                     <h6 class="m-0 font-weight-bold text-black" style="font-size:30px"> Data Instruktur</h6>
                 </div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-black" data-toggle="modal" data-target="#addModal">
-                        <i class="fa fa-plus"> </i> <span> Tambah Instruktur </span>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                        <i class="fa fa-plus"> </i> <span> </span> <span>Tambah Instruktur </span>
                     </button>
-                    <div class="table-responsive mt-3">
+                    <div class="table-responsive mt-3 pb-3">
                         <div class="row">
                             <div class="col-sm-12">
                                 <table class="table table-bordered" id="tableInstruktur" role="grid"
@@ -51,7 +42,7 @@
                                         <th>Nama Instruktur</th>
                                         <th>Kompetensi</th>
                                         <th>Kampus</th>
-                                        <th>Total Jam Mengajar</th>
+                                        <th>History</th>
                                         <th>Action</th>
                                     </thead>
 
@@ -62,14 +53,21 @@
                                                 <td>{{ $instruktur->nama_instruktur }}</td>
                                                 <td>{{ $instruktur->kompetensi_instruktur }}</td>
                                                 <td>{{ $instruktur->kampus_instruktur }}</td>
-                                                <td> </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                                    <a type="button" class="btn btn-dark btn-sm" style="font-size:15px" href="{{route("HistoryPresensi")}}?nama={{$instruktur->nama_instruktur}}"> <i class="fas fa-history"></i> History </a>
+                                                </td>
+                                                <td>
+                                                    <button type="button" style="font-size:15px" class="btn btn-success btn-sm" data-toggle="modal"
+                                                        data-target="#competencyModal"
+                                                        onclick="showCompetency('{{ $instruktur->id_instruktur }}')">
+                                                        <i class="fas fa-eye"> </i>
+                                                    </button>
+                                                    <button type="button" style="font-size:15px" class="btn btn-info btn-sm" data-toggle="modal"
                                                         data-target="#detailModal"
                                                         onclick="showDetail('{{ $instruktur->id_instruktur }}')">
                                                         <i class="fas fa-list"> </i>
                                                     </button>
-                                                    <button type="button" class="btn btn-info btn-sm btn-warning"
+                                                    <button type="button" style="font-size:15px" class="btn btn-info btn-sm btn-warning"
                                                         data-toggle="modal" data-target="#editModal"
                                                         onclick="showEdit('{{ $instruktur->id_instruktur }}')">
                                                         <i class="fa fa-pencil"> </i>
@@ -77,7 +75,7 @@
                                                     <button type="button"
                                                         data-instruktur-id='{{ $instruktur->id_instruktur }}'
                                                         data-toggle="modal" data-target="#deleteInstrukturModal"
-                                                        class="btn btn-info btn-sm btn-danger"> <i class="far fa-trash-alt">
+                                                        style="font-size:15px" class="btn btn-info btn-sm btn-danger"> <i class="far fa-trash-alt">
                                                         </i>
                                                     </button>
                                                 </td>
@@ -145,8 +143,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Submit</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fas fa-times"></i> Close</button>
                             </div>
                         </form>
 
@@ -203,7 +201,7 @@
                                     <input type="text" class="form-control" id="kampus_instruktur" readonly>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fas fa-times"></i> Close</button>
                                 </div>
                             </div>
                         </div>
@@ -279,9 +277,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal"
-                                    onclick="submitForm()">Submit</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success" data-dismiss="modal" onclick="submitForm()"><i class="fa fa-pencil"></i> Submit </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fas fa-times"></i> Close</button>
                             </div>
                         </form>
 
@@ -310,262 +307,293 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-danger" data-dismiss="modal"
-                                onclick="
-            event.preventDefault();
-            document.getElementById('deleteInstrukturModalForm').submit();">Delete</button>
+                            <button type="submit" class="btn btn-danger" data-dismiss="modal" onclick="event.preventDefault();document.getElementById('deleteInstrukturModalForm').submit();"> <i class="fa fa-pencil"></i> Delete </button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fas fa-times"></i> Close</button>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="modal fade" id="competencyModal" tabindex="-1" role="dialog" aria-labelledby="competencyModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="competencyModalLabel">Instructor Competency</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <h3 id="loadingComptencyModal">Loading ....</h3>
+                                <h3 id="dataTidakAdaComptencyModal">Data tidak ditemukan</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="tableCompetencyModal">
+                                    <thead>
+                                        <tr>
+                                            <td>No</td>
+                                            <td>Skill Competency</td>
+                                            <td>Level</td>
+                                            <td>Deskripsi</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-        @endsection
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+@endsection
 
-        @section('script-js')
-            <script>
-                $(document).ready(function() {
-                    // $('#tableInstruktur thead tr')
-                    //     .clone(true)
-                    //     .addClass('filters')
-                    //     .appendTo('#tableInstruktur thead');
+@section('script-js')
+<script>
+    $(document).ready(function () {
+        // $('#tableInstruktur thead tr')
+        //     .clone(true)
+        //     .addClass('filters')
+        //     .appendTo('#tableInstruktur thead');
+        $('#tableInstruktur').DataTable({
+            "scrollX": true,
+            "order": [],
+            orderCellsTop: true,
+            fixedHeader: true,
+            "initComplete": function (settings, json) {
+                let eha = this;
+                $("div.dataTables_filter").prepend(
+                    $(`<select class="form-control d-inline-flex mr-3">
+                        <option value="">Semua Kampus</option>
+                        @foreach($sekolah as $val)
+                            <option value="{{ $val->kampus_instruktur }}">{{ $val->kampus_instruktur }}</option>
+                        @endforeach
+                        </select>`).on('change', function () {
+                        //console.log($(this).val());
+                        console.log(eha.api().columns(3))
+                        eha.api().columns(3).search($(this).val(), true, false).draw();
 
-                    $('#tableInstruktur').DataTable({
-                        "scrollX": true,
-                        "order": [],
-                        orderCellsTop: true,
-                        fixedHeader: true,
-                        "initComplete": function(settings, json) {
-                            let eha = this;
-                            $("div.dataTables_filter").prepend(
-                                $(`<select class="form-control d-inline-flex mr-3">
-                                    <option value="">Semua Kampus</option>
-                                    @foreach($sekolah as $val)
-                                        <option value="{{ $val->kampus_instruktur }}">{{ $val->kampus_instruktur }}</option>
-                                    @endforeach
-                                    </select>`).on('change', function () {
-                                        //console.log($(this).val());
-                                        console.log(eha.api().columns(3))
-                                        eha.api().columns(3).search($(this).val(), true, false).draw();
+                    })
+                );
+                // initComplete: function() {
+                //     var api = this.api();
 
-                                    })
-                            );
-                        // initComplete: function() {
-                        //     var api = this.api();
+                //     // For each column
+                //     api
+                //         .columns()
+                //         .eq(0)
+                //         .each(function(colIdx) {
+                //             // Set the header cell to contain the input element
+                //             var cell = $('.filters th').eq(
+                //                 $(api.column(colIdx).header()).index()
+                //             );
+                //             var title = $(cell).text();
+                //             $(cell).html('<input type="text" placeholder="' + title + '" />');
 
-                        //     // For each column
-                        //     api
-                        //         .columns()
-                        //         .eq(0)
-                        //         .each(function(colIdx) {
-                        //             // Set the header cell to contain the input element
-                        //             var cell = $('.filters th').eq(
-                        //                 $(api.column(colIdx).header()).index()
-                        //             );
-                        //             var title = $(cell).text();
-                        //             $(cell).html('<input type="text" placeholder="' + title + '" />');
+                //             // On every keypress in this input
+                //             $(
+                //                     'input',
+                //                     $('.filters th').eq($(api.column(colIdx).header()).index())
+                //                 )
+                //                 .off('keyup change')
+                //                 .on('change', function(e) {
+                //                     // Get the search value
+                //                     $(this).attr('title', $(this).val());
+                //                     var regexr =
+                //                         '({search})'; //$(this).parents('th').find('select').val();
 
-                        //             // On every keypress in this input
-                        //             $(
-                        //                     'input',
-                        //                     $('.filters th').eq($(api.column(colIdx).header()).index())
-                        //                 )
-                        //                 .off('keyup change')
-                        //                 .on('change', function(e) {
-                        //                     // Get the search value
-                        //                     $(this).attr('title', $(this).val());
-                        //                     var regexr =
-                        //                         '({search})'; //$(this).parents('th').find('select').val();
+                //                     var cursorPosition = this.selectionStart;
+                //                     // Search the column for that value
+                //                     api
+                //                         .column(colIdx)
+                //                         .search(
+                //                             this.value != '' ?
+                //                             regexr.replace('{search}', '(((' + this.value +
+                //                                 ')))') :
+                //                             '',
+                //                             this.value != '',
+                //                             this.value == ''
+                //                         )
+                //                         .draw();
+                //                 })
+                //                 .on('keyup', function(e) {
+                //                     e.stopPropagation();
 
-                        //                     var cursorPosition = this.selectionStart;
-                        //                     // Search the column for that value
-                        //                     api
-                        //                         .column(colIdx)
-                        //                         .search(
-                        //                             this.value != '' ?
-                        //                             regexr.replace('{search}', '(((' + this.value +
-                        //                                 ')))') :
-                        //                             '',
-                        //                             this.value != '',
-                        //                             this.value == ''
-                        //                         )
-                        //                         .draw();
-                        //                 })
-                        //                 .on('keyup', function(e) {
-                        //                     e.stopPropagation();
+                //                     $(this).trigger('change');
+                //                     $(this)
+                //                         .focus()[0]
+                //                         .setSelectionRange(cursorPosition, cursorPosition);
+                //                 });
+                //         });
+                // },
+            }
+        });
+    });
+    function showCompetency(nid) {
+        console.log('showCompetency clicked');
+        //console.log(nid);
+        $("#tableCompetencyModal tbody").empty();
+        $("#dataTidakAdaComptencyModal").hide();
+        $("#tableCompetencyModal").hide();
+        $("#loadingComptencyModal").show();
 
-                        //                     $(this).trigger('change');
-                        //                     $(this)
-                        //                         .focus()[0]
-                        //                         .setSelectionRange(cursorPosition, cursorPosition);
-                        //                 });
-                        //         });
-                        // },
-                    }
-                });
-            });
-                function showCompetency(nid) {
-                    console.log('showCompetency clicked');
-                    //console.log(nid);
-                    $("#tableCompetencyModal tbody").empty();
-                    $("#dataTidakAdaComptencyModal").hide();
-                    $("#tableCompetencyModal").hide();
-                    $("#loadingComptencyModal").show();
-
-                    $.ajax({
-                        url: "{!! route('getCompetencyInstruktur') !!}",
-                        data: {
-                            dataNID: nid
-                        },
-                        dataType: 'json',
-                        success: function(data) {
-                            //console.log(data);
-                            let noTable = 1;
-                            if (data.length > 0) {
-                                data.forEach((item, index) => {
-                                    if (item.SKILL_COMP == '-' && item.COMPTCY_LEVEL == null && item
-                                        .COMPTCY_DESC == '-') {
-                                        return;
-                                    }
-                                    $("#tableCompetencyModal tbody").append(
-                                        `
-                            <tr>
-                                <td>${noTable}</td>
-                                <td>${item.SKILL_COMP}</td>
-                                <td>${item.COMPTCY_LEVEL == null ? '-': item.COMPTCY_LEVEL}</td>
-                                <td>${item.COMPTCY_DESC}</td>
-                            </tr>
+        $.ajax({
+            url: "{!! route('getCompetencyInstruktur') !!}",
+            data: {
+                dataNID: nid
+            },
+            dataType: 'json',
+            success: function (data) {
+                //console.log(data);
+                let noTable = 1;
+                if (data.length > 0) {
+                    data.forEach((item, index) => {
+                        if (item.SKILL_COMP == '-' && item.COMPTCY_LEVEL == null && item
+                            .COMPTCY_DESC == '-') {
+                            return;
+                        }
+                        $("#tableCompetencyModal tbody").append(
                             `
-                                    )
-                                    noTable++;
-                                });
-                                $("#loadingComptencyModal").hide();
-                                $("#tableCompetencyModal").show();
-                            } else {
-                                $("#loadingComptencyModal").hide();
-                                $("#dataTidakAdaComptencyModal").show();
-                            }
-                        }
-                    })
+                <tr>
+                    <td>${noTable}</td>
+                    <td>${item.skill_comp}</td>
+                    <td>${item.competency_level == null ? '-' : item.competency_level}</td>
+                    <td>${item.COMPTCY_DESC}</td>
+                </tr>
+                `
+                        )
+                        noTable++;
+                    });
+                    $("#loadingComptencyModal").hide();
+                    $("#tableCompetencyModal").show();
+                } else {
+                    $("#loadingComptencyModal").hide();
+                    $("#dataTidakAdaComptencyModal").show();
                 }
-                function showDetail(id_instruktur) {
-                    console.log('showDetail clicked');
-                    //console.log(id_instruktur);
-                    $("#dataTidakAdaDetailModal").hide();
-                    $("#dataDetail").hide();
-                    $("#loadingDetailModal").show();
+            }
+        })
+    }
+    function showDetail(id_instruktur) {
+        console.log('showDetail clicked');
+        //console.log(id_instruktur);
+        $("#dataTidakAdaDetailModal").hide();
+        $("#dataDetail").hide();
+        $("#loadingDetailModal").show();
 
-                    $.ajax({
-                        url: "{!! route('getDetailInstruktur') !!}",
-                        data: {
-                            id_instruktur: id_instruktur
-                        },
-                        dataType: 'json',
-                        success: function(data) {
-                            console.log(data);
-                            let noTable = 1;
-                            if (data) {
-                                $("#id_instruktur").val(data.id_instruktur === null ? 'XXX' : data.id_instruktur)
-                                $("#nama_instruktur").val(data.nama_insturktur === null ? 'XXX' : data.nama_insturktur)
-                                $("#status_instruktur").val(data.status_instruktur === null ? 'XXX' : data
-                                    .status_instruktur)
-                                $("#hp_instruktur").val(data.hp_instruktur === null ? 'XXX' : data.hp_instruktur)
-                                $("#email_instruktur").val(data.email_instruktur === null ? 'XXX' : data
-                                    .email_instruktur)
-                                $("#kualifikasi_instruktur").val(data.kualifikasi_instruktur === null ? 'XXX' : data
-                                    .kualifikasi_instruktur)
-                                $("#kampus_instruktur").val(data.kampus_instruktur === null ? 'XXX' : data
-                                    .kampus_instruktur)
-                                $("#sertifikasi_tot").val(data.sertifikasi_tot === null ? 'XXX' : data.sertifikasi_tot)
-                                $("#kompetensi_instruktur").val(data.kompetensi_instruktur === null ? 'XXX' : data
-                                    .kompetensi_instruktur)
-                                $("#loadingDetailModal").hide();
-                                $("#dataDetail").show();
-                            } else {
-                                $("#loadingDetailModal").hide();
-                                $("#dataTidakAdaDetailModal").show();
-                            }
-                        }
-                    })
+        $.ajax({
+            url: "{!! route('getDetailInstruktur') !!}",
+            data: {
+                id_instruktur: id_instruktur
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                let noTable = 1;
+                if (data) {
+                    $("#id_instruktur").val(data.id_instruktur === null ? 'XXX' : data.id_instruktur)
+                    $("#nama_instruktur").val(data.nama_insturktur === null ? 'XXX' : data.nama_insturktur)
+                    $("#status_instruktur").val(data.status_instruktur === null ? 'XXX' : data
+                        .status_instruktur)
+                    $("#hp_instruktur").val(data.hp_instruktur === null ? 'XXX' : data.hp_instruktur)
+                    $("#email_instruktur").val(data.email_instruktur === null ? 'XXX' : data
+                        .email_instruktur)
+                    $("#kualifikasi_instruktur").val(data.kualifikasi_instruktur === null ? 'XXX' : data
+                        .kualifikasi_instruktur)
+                    $("#kampus_instruktur").val(data.kampus_instruktur === null ? 'XXX' : data
+                        .kampus_instruktur)
+                    $("#sertifikasi_tot").val(data.sertifikasi_tot === null ? 'XXX' : data.sertifikasi_tot)
+                    $("#kompetensi_instruktur").val(data.kompetensi_instruktur === null ? 'XXX' : data
+                        .kompetensi_instruktur)
+                    $("#loadingDetailModal").hide();
+                    $("#dataDetail").show();
+                } else {
+                    $("#loadingDetailModal").hide();
+                    $("#dataTidakAdaDetailModal").show();
                 }
-                function showEdit(id_instruktur) {
-                    // console.log('showEdit clicked');
-                    //console.log(id_instruktur);
-                    $("#dataTidakAdaEditModal").hide();
-                    $("#dataEdit").hide();
-                    $("#loadingEditModal").show();
+            }
+        })
+    }
+    function showEdit(id_instruktur) {
+        // console.log('showEdit clicked');
+        //console.log(id_instruktur);
+        $("#dataTidakAdaEditModal").hide();
+        $("#dataEdit").hide();
+        $("#loadingEditModal").show();
 
-                    $.ajax({
-                        url: "{!! route('getEditInstruktur') !!}",
-                        data: {
-                            id_instruktur: id_instruktur
-                        },
-                        dataType: 'json',
-                        success: function(data) {
-                            //console.log(data);
-                            let noTable = 1;
+        $.ajax({
+            url: "{!! route('getEditInstruktur') !!}",
+            data: {
+                id_instruktur: id_instruktur
+            },
+            dataType: 'json',
+            success: function (data) {
+                //console.log(data);
+                let noTable = 1;
 
-                            if (data) {
+                if (data) {
 
-                                $("#idKey").val(data.id);
-                                //alert($("#idKey").val());
-                                $("#id_instruktur2").val(data.id_instruktur === null ? 'XXX' : data.id_instruktur)
-                                $("#nama_instruktur2").val(data.nama_insturktur === null ? 'XXX' : data.nama_instruktur)
-                                $("#kompetensi_instruktur2").val(data.kompetensi_instruktur === null ? 'XXX' : data
-                                    .kompetensi_instruktur)
-                                $("#status_instruktur2").val(data.status_instruktur === null ? 'XXX' : data
-                                    .status_instruktur)
-                                $("#hp_instruktur2").val(data.hp_instruktur === null ? 'XXX' : data.hp_instruktur)
-                                $("#email_instruktur2").val(data.email_instruktur === null ? 'XXX' : data
-                                    .email_instruktur)
-                                $("#sertifikasi_tot2").val(data.sertifikasi_tot === null ? 'XXX' : data.sertifikasi_tot)
-                                $("#kualifikasi_instruktur2").val(data.kualifikasi_instruktur === null ? 'XXX' : data
-                                    .kualifikasi_instruktur)
-                                $("#kampus_instruktur2").val(data.kampus_instruktur === null ? 'XXX' : data
-                                    .kampus_instruktur)
-                                $("#update_terakhir2").val(data.update_terakhir)
-                                $("#loadingEditModal").hide();
-                                $("#dataEdit").show();
-                            } else {
-                                $("#loadingEditModal").hide();
-                                $("#dataTidakAdaEditModal").show();
-                            }
-                        }
-                    })
+                    $("#idKey").val(data.id);
+                    //alert($("#idKey").val());
+                    $("#id_instruktur2").val(data.id_instruktur === null ? 'XXX' : data.id_instruktur)
+                    $("#nama_instruktur2").val(data.nama_insturktur === null ? 'XXX' : data.nama_instruktur)
+                    $("#kompetensi_instruktur2").val(data.kompetensi_instruktur === null ? 'XXX' : data
+                        .kompetensi_instruktur)
+                    $("#status_instruktur2").val(data.status_instruktur === null ? 'XXX' : data
+                        .status_instruktur)
+                    $("#hp_instruktur2").val(data.hp_instruktur === null ? 'XXX' : data.hp_instruktur)
+                    $("#email_instruktur2").val(data.email_instruktur === null ? 'XXX' : data
+                        .email_instruktur)
+                    $("#sertifikasi_tot2").val(data.sertifikasi_tot === null ? 'XXX' : data.sertifikasi_tot)
+                    $("#kualifikasi_instruktur2").val(data.kualifikasi_instruktur === null ? 'XXX' : data
+                        .kualifikasi_instruktur)
+                    $("#kampus_instruktur2").val(data.kampus_instruktur === null ? 'XXX' : data
+                        .kampus_instruktur)
+                    $("#update_terakhir2").val(data.update_terakhir)
+                    $("#loadingEditModal").hide();
+                    $("#dataEdit").show();
+                } else {
+                    $("#loadingEditModal").hide();
+                    $("#dataTidakAdaEditModal").show();
                 }
-                function submitForm() {
-                    $("#form_edit").submit()
-                }
-                //function
-                function SubmitEditInstruktur(id_instruktur) {
-                    console.log('showEdit clicked');
-                    //console.log(id_instruktur);
-                    $("#dataTidakAdaEditModal").hide();
-                    $("#dataEdit").hide();
-                    $("#loadingEditModal").show();
+            }
+        })
+    }
+    function submitForm() {
+        $("#form_edit").submit()
+    }
+    function SubmitEditInstruktur(id_instruktur) {
+        console.log('showEdit clicked');
+        //console.log(id_instruktur);
+        $("#dataTidakAdaEditModal").hide();
+        $("#dataEdit").hide();
+        $("#loadingEditModal").show();
 
-                    $.ajax({
-                        url: "{!! route('PostEditInstruktur') !!}",
-                        data: $("#form_edit").serialize(),
-                        method: "post",
-                        dataType: 'json',
-                        success: function(data) {
-                            console.log(data);
-                            let noTable = 1
-                        }
-                    })
-                }
-                //triggered when modal is about to be shown
-                $('#deleteInstrukturModal').on('show.bs.modal', function(e) {
+        $.ajax({
+            url: "{!! route('PostEditInstruktur') !!}",
+            data: $("#form_edit").serialize(),
+            method: "post",
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                let noTable = 1
+            }
+        })
+    }
+    //triggered when modal is about to be shown
+    $('#deleteInstrukturModal').on('show.bs.modal', function (e) {
 
-                    //get data-id attribute of the clicked element
-                    var id_instruktur = $(e.relatedTarget).data('instruktur-id');
-                    //console.log(instruk);
-                    //populate the textbox
-                    //alert(id_instruktur)
-                    $(e.currentTarget).find('input[name="id_instruktur"]').val(id_instruktur);
-                });
-            </script>
-        @endsection
+        //get data-id attribute of the clicked element
+        var id_instruktur = $(e.relatedTarget).data('instruktur-id');
+        //console.log(instruk);
+        //populate the textbox
+        //alert(id_instruktur)
+        $(e.currentTarget).find('input[name="id_instruktur"]').val(id_instruktur);
+    });
+</script>
+@endsection

@@ -38,7 +38,7 @@
                     <h6 class="m-0 font-weight-bold text-black" style="font-size:30px"> Data Training</h6>
                 </div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-black" data-toggle="modal" data-target="#addModal">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
                         <i class="fa fa-plus"> </i> <span> Tambah Training </span>
                     </button>
                     <div class="table-responsive mt-3">
@@ -48,10 +48,8 @@
                                     aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
                                     <thead>
                                         <th>ID Pelatihan</th>
-                                        <th>Nama Pelatihan</th>
+                                        <th>Judul Training</th>
                                         <th>Jenis Pelatihan</th>
-                                        <th>Lokasi Pelatihan 1</th>
-                                        <th>Lokasi Pelatihan 2</th>
                                         <th>Action</th>
                                     </thead>
 
@@ -60,8 +58,6 @@
                                             <tr role="row" class="odd">
                                                 <td>{{ $pelatihan->course_id }}</td>
                                                 <td>{{ $pelatihan->course_title }}</td>
-                                                <td>{{ $pelatihan->train_location1 }}</td>
-                                                <td>{{ $pelatihan->train_location2 }}</td>
                                                 <td>{{ $pelatihan->jenis_pelatihan }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
@@ -128,8 +124,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Submit</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fas fa-times"></i> Close</button>
                             </div>
                         </form>
 
@@ -174,7 +170,7 @@
                                     <input type="text" class="form-control" id= "train_location2" name="train_location2" readonly>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
                                 </div>
                             </div>
                         </div>
@@ -225,9 +221,9 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal"
-                                    onclick="submitForm()">Submit</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success" data-dismiss="modal"
+                                    onclick="submitForm()"><i class="fa fa-pencil"> </i> Submit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"> </i> Close</button>
                             </div>
                         </form>
 
@@ -256,11 +252,11 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-danger" data-dismiss="modal"
-                                onclick="
-            event.preventDefault();
-            document.getElementById('deletePelatihanModalForm').submit();">Delete</button>
+                            onclick="
+        event.preventDefault();
+        document.getElementById('deletePelatihanModalForm').submit();"> <i class="far fa-trash-alt"></i> Delete</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fa fa-times"></i> Close</button>
                         </div>
                     </div>
                 </div>
@@ -274,7 +270,6 @@
             <script>
                 $(document).ready(function() {
                     $('#tablePelatihan thead tr')
-                        .clone(true)
                         .addClass('filters')
                         .appendTo('#tablePelatihan thead');
 
@@ -283,57 +278,57 @@
                         "order": [],
                         orderCellsTop: true,
                         fixedHeader: true,
-                        initComplete: function() {
-                            var api = this.api();
+                        // // initComplete: function() {
+                        // //     var api = this.api();
 
-                            // For each column
-                            api
-                                .columns()
-                                .eq(0)
-                                .each(function(colIdx) {
-                                    // Set the header cell to contain the input element
-                                    var cell = $('.filters th').eq(
-                                        $(api.column(colIdx).header()).index()
-                                    );
-                                    var title = $(cell).text();
-                                    $(cell).html('<input type="text" placeholder="' + title + '" />');
+                        //     // For each column
+                        //     api
+                        //         .columns()
+                        //         .eq(0)
+                        //         .each(function(colIdx) {
+                        //             // Set the header cell to contain the input element
+                        //             var cell = $('.filters th').eq(
+                        //                 $(api.column(colIdx).header()).index()
+                        //             );
+                        //             var title = $(cell).text();
+                        //             $(cell).html('<input type="text" placeholder="' + title + '" />');
 
-                                    // On every keypress in this input
-                                    $(
-                                            'input',
-                                            $('.filters th').eq($(api.column(colIdx).header()).index())
-                                        )
-                                        .off('keyup change')
-                                        .on('change', function(e) {
-                                            // Get the search value
-                                            $(this).attr('title', $(this).val());
-                                            var regexr =
-                                                '({search})'; //$(this).parents('th').find('select').val();
+                        //             // On every keypress in this input
+                        //             $(
+                        //                     'input',
+                        //                     $('.filters th').eq($(api.column(colIdx).header()).index())
+                        //                 )
+                        //                 .off('keyup change')
+                        //                 .on('change', function(e) {
+                        //                     // Get the search value
+                        //                     $(this).attr('title', $(this).val());
+                        //                     var regexr =
+                        //                         '({search})'; //$(this).parents('th').find('select').val();
 
-                                            var cursorPosition = this.selectionStart;
-                                            // Search the column for that value
-                                            api
-                                                .column(colIdx)
-                                                .search(
-                                                    this.value != '' ?
-                                                    regexr.replace('{search}', '(((' + this.value +
-                                                        ')))') :
-                                                    '',
-                                                    this.value != '',
-                                                    this.value == ''
-                                                )
-                                                .draw();
-                                        })
-                                        .on('keyup', function(e) {
-                                            e.stopPropagation();
+                        //                     var cursorPosition = this.selectionStart;
+                        //                     // Search the column for that value
+                        //                     api
+                        //                         .column(colIdx)
+                        //                         .search(
+                        //                             this.value != '' ?
+                        //                             regexr.replace('{search}', '(((' + this.value +
+                        //                                 ')))') :
+                        //                             '',
+                        //                             this.value != '',
+                        //                             this.value == ''
+                        //                         )
+                        //                         .draw();
+                        //                 })
+                        //                 .on('keyup', function(e) {
+                        //                     e.stopPropagation();
 
-                                            $(this).trigger('change');
-                                            $(this)
-                                                .focus()[0]
-                                                .setSelectionRange(cursorPosition, cursorPosition);
-                                        });
-                                });
-                        },
+                        //                     $(this).trigger('change');
+                        //                     $(this)
+                        //                         .focus()[0]
+                        //                         .setSelectionRange(cursorPosition, cursorPosition);
+                        //                 });
+                        //         });
+                        // },
                     });
                 });
 

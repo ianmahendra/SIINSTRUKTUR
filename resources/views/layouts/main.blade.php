@@ -36,8 +36,8 @@
   transition: all .3s .3s ease-out;
 }
 .amcharts-graph-column-front:hover {
-  fill: #065E74;
-  stroke: #496375;
+  fill: #FFF;
+  stroke: #FFF;
   -webkit-transition: all .3s ease-out;
   transition: all .3s ease-out;
 }
@@ -77,7 +77,8 @@
 
   }
   .shadow-lg:hover{
-    border:1px solid rgb(190, 190, 190);
+    /* border:1px solid rgb(190, 190, 190); */
+    /* box-shadow: 0 0rem 0rem rgba(0,0,0,0) !important; */
   }
 
   .tooltip-inner {
@@ -88,12 +89,12 @@
   border-right-color: #065E74 !important;
 }
 
-  .card:hover{
-    border: 1px solid #065E74;
-  }
+  /* .card:hover{
+    border: 1px solid #4e73df;
+  } */
 
   .bg-custom-sidebar{
-    background-color: #333333;
+    background-color: #4E73DF;
     background-size: auto;
   }
   </style>
@@ -128,14 +129,14 @@
     <ul class="navbar-nav bg-custom-sidebar sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center bg-white" href="{{route('home')}}">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center mt-3 mb-2" href="{{route('home')}}">
         <div class="sidebar-brand-icon">
-          <img src="{{ asset('img/logopjb.png') }}" alt="logo" height="auto" width="75px">
+          <img src="{{ asset('img/logopjb3.png') }}" alt="logo" height="auto" width="100px">
         </div>
       </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+      <hr class="sidebar-divider my-0 mt-3">
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -146,29 +147,59 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
 
-      <b class="text-light" style="font-size:15px ;margin-left:20px">Menu</b>
+      <b class="text-light" style="font-size:15px ;margin-left:20px ;margin-top:10px">Menu</b>
 
       <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Ringkasan!">
       <div class="shadow-lg m-2">
         <a class="nav-link collapsed text-light" href="{{ route('home') }}">
-            <i class="fas fa-tachometer-alt" style="font-size:20px"></i>
-          <span style="font-size:15px ;margin-left:15px">Dashboard</span>
+            <i class="fas fa-tachometer-alt text-light" style="font-size:20px"></i>
+          <span style="font-size:15px ;margin-left:15px; font-weight:600"> Dashboard</span>
         </a>
         </div>
       </li>
 
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block mt-3">
+
+      <b class="text-light" style="font-size:15px ;margin-left:20px ;margin-top:10px">Presensi</b>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item "  data-toggle="tooltip" data-placement="right">
+         <div class="shadow-lg m-2">
+        <a class="nav-link collapsed" href="{{ route('PresensiInput') }}">
+            <i class="fas fa-user-check" style="font-size:20px"></i>
+            <span style="font-size:15px ;margin-left:15px">Input</span>
+        </a>
+        </div>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item "  data-toggle="tooltip" data-placement="right">
+        <div class="shadow-lg m-2">
+       <a class="nav-link collapsed" href="{{ route('RecentPresensi') }}">
+           <i class="fas fa-history" style="font-size:25px"></i>
+           <span style="font-size:15px ;margin-left:15px">History</span>
+       </a>
+       </div>
+     </li>
+
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block mt-3">
+
+      <b class="text-light" style="font-size:15px ;margin-left:20px ;margin-top:20px ;margin-bottom :5px">Data Master</b>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tampilan Data Instruktur!">
       <div class="shadow-lg m-2">
-        <a class="nav-link collapsed text-light" href="{{ route('dashboard.instruktur') }}">
+        <a class="nav-link collapsed" href="{{ route('dashboard.instruktur') }}">
           <i class="fas fa-chalkboard-teacher" style="font-size:20px"></i>
           <span style="font-size:15px ;margin-left:15px" >Instruktur</span>
         </a>
         </div>
       </li>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+      {{-- <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Data Pegawai!">
         <div class="shadow-lg m-2">
           <a class="nav-link collapsed text-light" href="{{ route('dashboard.pegawai') }}">
@@ -176,12 +207,12 @@
             <span style="font-size:15px ;margin-left:15px">Pegawai</span>
           </a>
         </div>
-      </li>
+      </li> --}}
 
         <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Data Pelatihan!">
+      <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Tampilan Data Pelatihan!">
         <div class="shadow-lg m-2">
-        <a class="nav-link collapsed text-light" href="{{ route('dashboard.pelatihan') }}">
+        <a class="nav-link collapsed" href="{{ route('dashboard.pelatihan') }}">
           <i class="fas fa-user-shield" style="font-size:20px"></i>
           <span style="font-size:15px ;margin-left:15px">Pelatihan</span>
         </a>
@@ -191,7 +222,7 @@
         <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item "  data-toggle="tooltip" data-placement="right" title="Tampilan Data Sertifikasi!">
         <div class="shadow-lg m-2">
-        <a class="nav-link collapsed text-light" href="{{ route('dashboard.sertifikasi') }}">
+        <a class="nav-link collapsed" href="{{ route('dashboard.sertifikasi') }}">
             <i class="fas fa-file-pdf" style="font-size:20px"></i>
             <span style="font-size:15px ;margin-left:25px">Sertifikasi</span>
         </a>
@@ -208,16 +239,6 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block mt-3">
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item "  data-toggle="tooltip" data-placement="right">
-            <div class="shadow-lg m-2">
-            <a class="nav-link collapsed text-light" href="{{ route('dashboard.sertifikasi') }}">
-                <i class="fas fa-user-check" style="font-size:20px"></i>
-                <span style="font-size:15px ;margin-left:15px">Input Presensi</span>
-            </a>
-            </div>
-          </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
